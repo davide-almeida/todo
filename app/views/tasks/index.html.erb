@@ -1,0 +1,25 @@
+<div class="card shadow-lg w-100" style="max-width: 600px;">
+  <div class="card-header">
+    <h4>Tarefas</h4>
+
+    <%= turbo_frame_tag "progress_bar" do %>
+      <%= render partial: "tasks/progress_bar", locals: { progress_percentage: @progress_percentage } %>
+    <% end %>
+  </div>
+
+  <div class="card-body">
+    <div id="flash_messages" class="mb-4"></div>
+
+    <div class="mt-1 mb-4">
+      <%= turbo_frame_tag "task_form" do %>
+        <%= render partial: "tasks/form", locals: { task: Task.new } %>
+      <% end %>
+    </div>
+
+    <%= turbo_frame_tag "tasks" do %>
+      <ul class="list-group list-group-flush" id="tasks_list">
+        <%= render @tasks %>
+      </ul>
+    <% end %>
+  </div>
+</div>

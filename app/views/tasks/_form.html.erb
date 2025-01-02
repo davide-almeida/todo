@@ -1,0 +1,6 @@
+<%= form_with model: task, local: true do |form| %>
+  <div class="input-group">
+    <%= form.text_field :title, placeholder: "Nova tarefa...", class: "form-control", required: true %>
+    <%= form.submit t('buttons.add'), class: "btn btn-primary" %>
+  </div>
+<% end %>

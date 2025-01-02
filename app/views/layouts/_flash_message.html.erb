@@ -1,0 +1,24 @@
+<div id="flash">
+  <% flash.each do |key, value| %>
+    <div
+      class="alert <%= flash_class(key.to_sym) %> alert-dismissible fade show site-notification"
+      role="alert"
+      data-controller="flash-messages"
+      data-flash-messages-target="alert"
+    >
+      <% unless value == true %>
+        <%= value %>
+        <% if @task.errors.any? %>
+          <hr>
+          <ul>
+            <% @task.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <% end %>
+    </div>
+  <% end %>
+</div>

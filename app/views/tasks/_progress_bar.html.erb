@@ -1,0 +1,16 @@
+<div
+  class="progress"
+  data-controller="progress"
+  data-progress-percentage-value="<%= progress_percentage %>"
+>
+  <div
+    class="progress-bar"
+    role="progressbar"
+    style="width: <%= progress_percentage %>%;"
+    aria-valuenow="<%= progress_percentage %>"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    <%= progress_percentage %>%
+  </div>
+</div>

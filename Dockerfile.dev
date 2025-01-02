@@ -1,0 +1,21 @@
+# syntax = docker/dockerfile:1
+
+ARG RUBY_VERSION=3.4.1
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-bookworm
+
+WORKDIR /app
+
+RUN apt-get update -y
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g yarn
+
+COPY Gemfile Gemfile.lock ./ 
+RUN bundle install
+
+COPY . .
+
+ENTRYPOINT [ "bin/docker-entrypoint" ]
+
+EXPOSE 3000
+CMD ["rails", "server", "-b", "0.0.0.0"]

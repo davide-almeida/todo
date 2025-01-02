@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      task: Tarefa
+    attributes:
+      task:
+        title: Título
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: não pode ficar em branco
+              taken: já está em uso
+  task:
+    create:
+      success: Tarefa criada com sucesso!
+      error: Erro ao criar a tarefa. Tente novamente.
+    update:
+      success: Tarefa atualizada com sucesso!
+      error: Erro ao atualizar a tarefa. Tente novamente.
+    destroy:
+      success: Tarefa removida com sucesso!

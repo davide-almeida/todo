@@ -1,0 +1,11 @@
+<%= turbo_stream.replace "task_form" do %>
+  <%= render partial: "tasks/form", locals: { task: Task.new } %>
+<% end %>
+
+<%= turbo_stream.prepend "tasks_list" do %>
+  <%= render partial: "tasks/task", locals: { task: @task } %>
+<% end %>
+
+<%= turbo_stream.update "flash_messages" do %>
+  <%= render "layouts/flash_message" %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= turbo_stream.remove dom_id(@task) %>
+
+<%= turbo_stream.update "flash_messages" do %>
+  <%= render "layouts/flash_message" %>
+<% end %>
