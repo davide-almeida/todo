@@ -4,7 +4,6 @@ class TasksController < ApplicationController
   def index
     tasks
     @task = Task.new
-    calculate_progress_percentage
   end
 
   def create
@@ -12,7 +11,6 @@ class TasksController < ApplicationController
 
     if @task.save
       flash.now[:notice] = t('task.create.success')
-      calculate_progress_percentage
 
       respond_to do |format|
         format.turbo_stream
@@ -33,7 +31,6 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       flash.now[:notice] = t('task.update.success')
       tasks
-      calculate_progress_percentage
 
       respond_to do |format|
         format.turbo_stream
@@ -49,7 +46,6 @@ class TasksController < ApplicationController
     @task.destroy
     flash.now[:notice] = t('task.destroy.success')
     tasks
-    calculate_progress_percentage
 
     respond_to do |format|
       format.turbo_stream
@@ -69,15 +65,5 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :completed)
-  end
-
-  def calculate_progress_percentage
-    @total_tasks = @tasks.count
-    @completed_tasks = @tasks.where(completed: true).count
-    @progress_percentage = if @total_tasks.positive?
-                             (@completed_tasks.to_f / @total_tasks * 100).round
-                           else
-                             0
-                           end
   end
 end
